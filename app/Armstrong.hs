@@ -2,6 +2,7 @@ module Armstrong
     ( armstrongNumbers
     ) where
 
+import Control.Monad ( guard )
 import Math.NumberTheory.Primes.Testing ( millerRabinV )
 import Data.WideWord.Int128 ( Int128 )
 
@@ -26,9 +27,7 @@ getSump digitmap nDigits len = loop (digitmap `div` (nDigits + 1)) 1
                       in dCount * d ^ len + loop nextDm (d + 1)
 
 testSump :: (Integral a, Integral b) => a -> a -> b -> Maybe a
-testSump digitmap nDigits len
-    | isPrime sump && getDigitmap sump nDigits == digitmap = Just sump
-    | otherwise = Nothing
+testSump digitmap nDigits len = guard (isPrime sump && getDigitmap sump nDigits == digitmap) >> return sump
     where sump = getSump digitmap nDigits len
 
 forAllCombos :: (Integral a, Num b, Eq b) => a -> b -> a -> a -> [a]
