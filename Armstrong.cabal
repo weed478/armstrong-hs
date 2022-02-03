@@ -11,7 +11,6 @@ executable Armstrong
         Armstrong
     build-depends:
         base ^>=4.14.3.0,
-        arithmoi ^>=0.12.0.1,
-        wide-word ^>=0.1.1.2
+        arithmoi ^>=0.12.0.1
     hs-source-dirs: app
     default-language: Haskell2010
